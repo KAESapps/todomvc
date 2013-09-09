@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Template • TodoMVC</title>
+		<link rel="stylesheet" href="bower_components/todomvc-common/base.css">
+		<!-- CSS overrides - remove if you don't need it -->
+		<link rel="stylesheet" href="css/app.css">
+	</head>
+	<body>
+		<section id="todoapp">
+		</section>
+		<footer id="info">
+			<p>Double-click to edit a todo</p>
+			<!-- Remove the below line ↓ -->
+			<p>Template by <a href="http://github.com/sindresorhus">Sindre Sorhus</a></p>
+			<!-- Change this out with your name and url ↓ -->
+			<p>Created by <a href="http://todomvc.com">you</a></p>
+			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+		</footer>
+    	<script data-dojo-config="async: true, isDebug: true", src="../../../../ksf/deps/dojo/dojo.js"></script>
+        <script>
+    		require({
+    			baseUrl: '../../../../../ksf/deps',
+    			paths: {
+    				ksf: "..",
+    				todomvc: "../../todomvc/labs/architecture-examples/ksf/js",
+    			}
+    		}, ['ksf/tests/require-config'], function(config) {
+    			require(config, [
+    				'todomvc/components/TodosManager',
+    				'ksf/collections/OrderableSet',
+    				'todomvc/models/Todo',
+    			], function(
+    				TodosManager,
+    				OrderableSet,
+    				Todo
+    			) {
+    				var todo1 = window.todo1 = new Todo({title: 'Create a TodoMVC template', completed: true});
+    				var todo2 = window.todo2 = new Todo({title: 'Rule the web'});
+
+    				var todosManager = window.todosManager = new TodosManager({
+    					id: 'todoapp',
+    					todos: new OrderableSet([
+    						todo1,
+    						// todo2,
+    					]),
+    					mode: 'all', // 'active', 'completed'
+    				});
+    				document.body.replaceChild(todosManager.get('domNode'), document.getElementById("todoapp"));
+    				todosManager.startLiveRendering();
+    			});
+    		});
+    	</script>
+	</body>
+</html>

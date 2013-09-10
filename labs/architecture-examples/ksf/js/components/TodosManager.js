@@ -186,7 +186,7 @@ define([
 
 			this._components.whenDefined('presenter', [
 				bindProps('todos', '<', 'todos').bind(self),
-				bindProps('mode', '<', 'mode').bind(self),
+				bindProps('mode', '<<->', 'mode').bind(self),
 			]);
 
 			this._components.whenDefined('newTodo',	function (newTodo) {

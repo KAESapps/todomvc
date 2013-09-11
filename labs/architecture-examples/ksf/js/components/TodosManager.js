@@ -8,6 +8,7 @@ define([
 	'ksf/components/form/HtmlElementWithChanged',
 	'ksf/components/HtmlContainerIncremental',
 	'ksf/components/List',
+	'ksf/components/form/Checkbox',
 	'./TodoEditor',
 	'../models/Todo',
 
@@ -20,6 +21,7 @@ define([
 	HtmlElementWithChanged,
 	HtmlContainer,
 	List,
+	Checkbox,
 	TodoEditor,
 	Todo
 
@@ -109,9 +111,10 @@ define([
 					return 'Clear completed (' + count + ')';
 				})
 			);
-			this.setR('allCompleted', this.getR('todos', '.length').combine(this.getR('completedTodos', '.length'), function (allCount, completedCount) {
-				return allCount !== undefined && allCount === completedCount;
-			}));
+
+			this.whenDefined('todos', function (todos) {
+				this.bindAll('allCompleted', todos, 'completed');
+			});
 
 		}, {
 			clearCompleted: function () {
@@ -142,7 +145,7 @@ define([
 					});
 				},
 				'toggle-all': function () {
-					return new HtmlElement('input', {id: 'toggle-all', type: 'checkbox'});
+					return new Checkbox();
 				},
 				'todo-list': function () {
 					return new List({
@@ -223,8 +226,9 @@ define([
 			this._components.whenDefined('completedButton', 'presenter',
 				bindProps('active', '<<->', 'completedFilter')
 			);
+
 			this._components.whenDefined('toggle-all', 'presenter',
-				bindProps('checked', '<<->', 'allCompleted')
+				bindProps('value', '<<->', 'allCompleted')
 			);
 
 			var headerLayout = [new HtmlContainer('header', {id: 'header'}), [

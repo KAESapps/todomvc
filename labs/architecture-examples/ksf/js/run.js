@@ -31,7 +31,7 @@ require({
     var H = compose(
         Dict,
         function () {
-            window.addEventListener('hashchange', function (e) {
+            window.addEventListener('hashchange', function () {
                 var hash = location.hash;
                 if (hash !== this.get('value')) { // we use value comparison here, since the 'hashchange' event is asynchronous
                     this.set('value', hash);

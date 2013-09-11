@@ -31,21 +31,32 @@ require({
     var H = compose(
         Dict,
         function () {
-            this.set('value', location.hash);
-            window.addEventListener('hashchange', function () {
+            window.addEventListener('hashchange', function (e) {
                 var hash = location.hash;
                 if (hash !== this.get('value')) { // we use value comparison here, since the 'hashchange' event is asynchronous
                     this.set('value', hash);
                 }
             }.bind(this));
-            this.getR('value').changes().onValue(function (value) {
+            this.asStream('changed').map(this, 'get', 'value').onValue(function (value) {
                 if (value !== location.hash) { // we use value comparison here, since the 'hashchange' event is asynchronous
                     location.hash = value;
                 }
             });
+            this.set('value', location.hash);
         }
     );
-    var h = new H();
+    var TodosH = compose(
+        H,
+        {
+            _valueSetter: function (value) {
+                if (value !== '#/completed' && value !== '#/active') {
+                    value = '#/';
+                }
+                this._Setter('value', value);
+            },
+        }
+    );
+    var h = new TodosH();
 
     var hash2mode = function (hash) {
         if (hash === '#/completed') { return 'completed'; }

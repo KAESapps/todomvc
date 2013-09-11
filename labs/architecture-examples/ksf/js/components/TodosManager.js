@@ -115,14 +115,7 @@ define([
 
 		}, {
 			clearCompleted: function () {
-				var todos = this.get('todos');
-				todos._startChanges();
-				todos.clone().forEach(function (todo) {
-					if (isCompleted(todo)) {
-						todos.remove(todos.indexOf(todo));
-					}
-				});
-				todos._stopChanges();
+				this.get('todos').removeCompleted();
 			},
 		}
 	);

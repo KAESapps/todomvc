@@ -38,11 +38,24 @@ _If you have other helpful links to share, or find any of the links above no lon
 How is the app structured? Are there deviations from the spec? If so, why?
 
 
-## Running
+## Installing
 
-If there is a build step required to get the example working, explain it here.
+Dev version:
 
-To run the app, spin up an HTTP server and visit http://localhost/.../myexample/.
+	bower install
+
+To run the app in dev mode, spin up an HTTP server and visit http://localhost/index_dev.html.
+
+Additional steps for getting a built version:
+
+* install dojo tools & UglifyJS
+	bower install dojo/util
+	npm install uglify-js
+
+* build
+	build.sh
+
+To run the app, spin up an HTTP server and visit http://localhost/index.html.
 
 
 ## Credit

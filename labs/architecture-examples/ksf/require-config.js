@@ -4,6 +4,4 @@ require({
         'ksf',
         { name: 'todomvc', location: '../js' }
     ]
-}, ['ksf/require-config'], function (cfg) {
-    require(cfg);
 });

@@ -12,7 +12,7 @@ var profile = (function () {
 
         layers: {
             'dojo/dojo': {
-                include: [ 'todomvc/run' ],
+                include: [ 'todomvc/main' ],
                 customBase: true,
                 boot: true
             }

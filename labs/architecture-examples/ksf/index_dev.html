@@ -17,12 +17,15 @@
 			<p>Created by <a href="http://todomvc.com">you</a></p>
 			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 		</footer>
-		<script data-dojo-config="async: true, isDebug: true", src="bower_components/dojo/dojo.js"></script>
+		<script data-dojo-config="async: true, isDebug: true" src="bower_components/dojo/dojo.js"></script>
 		<script>
 			require({
 				baseUrl: 'bower_components'
 			});
 		</script>
-		<script src="js/run.js"></script>
+		<script src="require-config.js"></script>
+		<script>
+			require(['todomvc/main']);
+		</script>
 	</body>
 </html>

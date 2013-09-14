@@ -3,6 +3,6 @@
 	"version": "0.1.0",
 	"dependencies": {
 		"todomvc-common": "~0.1.4",
-		"ksf": "KAESapps/ksf"
+		"ksf": "KAESapps/ksf#es6-shim"
 	}
 }
